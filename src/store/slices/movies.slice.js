@@ -1,25 +1,25 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+
 import {moviesService} from "../../services";
 
 export const getAll = createAsyncThunk(
     'moviesSlice/getAll',
-    async (_, {rejectWithValue}) => {
-        try {
-            const movies = await moviesService.getAll();
-            return movies;
-        } catch (e) {
-            return rejectWithValue(e.message);
-        }
-
+    async (_, {dispatch,rejectWithValue}) => {
+       try{ const {data: {page, results,total_pages, total_results}} = await moviesService.getAll();
+        dispatch(setMovies({movies:results}))
+       } catch (e) {
+           return rejectWithValue(e.message)
+       }
     }
 )
 
 const initialState = {
-    page: 1,
-    totalPages:32252,
+    page: null,
+    totalPages: null,
+    totalResults: null,
     movies: [],
     singleMovie: {},
-    genres:[],
+    genres: [],
     status: null,
     error: null
 }
@@ -27,16 +27,13 @@ const initialState = {
 const moviesSlice = createSlice({
     name: 'moviesSlice',
     initialState,
-    extraReducers: {
+    reducers: {
+        setMovies: (state, action) => {
+            state.movies = action.payload.movies
+        },
+    },
+    extraReducers:{
 
-        [getAll.pending]: (state) => {
-            state.status = 'pending';
-            state.error = null;
-        },
-        [getAll.fulfilled]: (state, action) => {
-            state.status = 'fulfilled';
-            state.users = action.payload;
-        },
         [getAll.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
@@ -47,7 +44,7 @@ const moviesSlice = createSlice({
 
 const moviesReducer = moviesSlice.reducer;
 
-export const {} = moviesSlice.actions;
+export const {setMovies} = moviesSlice.actions;
 
 export default moviesReducer;
 
