@@ -7,13 +7,14 @@ const MoviesListCard = ({movieItem}) => {
         video, vote_average, vote_count} = movieItem;
     return (
         <div className={css.movieCard}>
-           <div>
+           <div className={css.poster}>
                <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={`${original_title} poster`}/>
+               <p>{overview}</p>
            </div>
            <div>
                <h3>{title}</h3>
                <p>{genre_ids}</p>
-               <p>{overview}</p>
+               {/*<p>{overview}</p>*/}
                <p>Release date: {release_date}</p>
            </div>
             <div>Rating: {vote_average} --- (total votes: {vote_count})</div>

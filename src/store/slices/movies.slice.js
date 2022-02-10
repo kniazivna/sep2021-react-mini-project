@@ -8,6 +8,7 @@ export const getAll = createAsyncThunk(
        try{
            const {results} = await moviesService.getAll(page);
         dispatch(setMovies({movies:results}));
+        dispatch(setPages());
        } catch (e) {
            return rejectWithValue(e.message)
        }
@@ -28,6 +29,8 @@ export const getAll = createAsyncThunk(
 
 const initialState = {
     movies: [],
+    totalPages: 500,
+    pages: [],
     genres: [],
     status: null,
     error: null
@@ -40,9 +43,13 @@ const moviesSlice = createSlice({
         setMovies: (state, action) => {
             state.movies = action.payload.movies
         },
+        setPages: (state) => {
+            for (let i = 1; i <= state.totalPages; i++) {
+                state.pages.push(i)
+            }
+        }
     },
     extraReducers:{
-
         [getAll.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
@@ -52,8 +59,9 @@ const moviesSlice = createSlice({
 
 
 const moviesReducer = moviesSlice.reducer;
-
-export const {setMovies} = moviesSlice.actions;
-
 export default moviesReducer;
+
+export const {setMovies, setPages} = moviesSlice.actions;
+
+
 

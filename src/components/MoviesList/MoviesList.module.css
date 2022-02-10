@@ -3,29 +3,29 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.paginationWrapper{
+.buttonsWrapper{
     display: flex;
     justify-content: center;
+    gap: 1%;
 }
-.pagination button {
-    background-color: black;
-    border: 1px solid snow;
-    color: white;
+.buttonsWrapper button {
+    background-color: darkslateblue;
+    border: 1px solid mediumpurple;
+    border-radius: 7%;
+    color: mediumpurple;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    margin-top: 20%;
 }
 
-.pagination [class='active'] {
-    background-color: snow;
-    color: black;
-}
-
-.pagination button:hover {
-    background-color: red;
-    cursor: grabbing;
+.buttonsWrapper button:hover {
+    background-color: mediumpurple;
+    border: 1px solid darkslateblue;
+    color: darkslateblue;
+    cursor: pointer;
 }
 
 .pagination button:disabled {

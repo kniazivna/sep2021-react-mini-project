@@ -1,3 +1,15 @@
 .movieCard{
     width: 22%;
 }
+
+p {
+    display: none;
+    text-align: center;
+    color: mediumpurple;
+    animation: fade .5s linear forwards;
+}
+.poster div:hover p {
+    display: block;
+    background: darkslateblue;
+    cursor: pointer;
+}
