@@ -3,3 +3,32 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.paginationWrapper{
+    display: flex;
+    justify-content: center;
+}
+.pagination button {
+    background-color: black;
+    border: 1px solid snow;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.pagination [class='active'] {
+    background-color: snow;
+    color: black;
+}
+
+.pagination button:hover {
+    background-color: red;
+    cursor: grabbing;
+}
+
+.pagination button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}

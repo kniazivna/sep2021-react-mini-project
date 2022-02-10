@@ -1,19 +1,32 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
-import {getAll} from "../../store";
+import {getAll/*, setPages*/} from "../../store";
 import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
 import css from './MoviesList.module.css';
+import {useSearchParams} from "react-router-dom";
+
+
 
 const MoviesList = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const {movies,error, status} = useSelector(state => state['moviesReducer']);
-    const dispatch = useDispatch();
+    const dispatchMovies = useDispatch();
     console.log(movies);
 
+
     useEffect(() => {
-        dispatch(getAll())
-    }, [])
+        if (!searchParams.get('page')) {
+            setSearchParams({page: '1'})
+        }
+       const page = searchParams.get('page');
+        dispatchMovies(getAll({page}));
+        // dispatchMovies(setPages());
+    }, [searchParams])
+
+
+
 
     return (
         <div className={css.movieListWrapper}>
@@ -28,7 +41,8 @@ const MoviesList = () => {
 
             {status === 'rejected' && <h1>Rejected</h1>}
             {error && <h1>{error}</h1>}
-            {movies.map(movieItem => <MoviesListCard key={movieItem.id} movieItem={movieItem}/>)}
+            {movies && movies.map(movieItem => <MoviesListCard key={movieItem.id} movieItem={movieItem}/>)}
+
         </div>
     );
 };

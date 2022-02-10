@@ -4,21 +4,30 @@ import {moviesService} from "../../services";
 
 export const getAll = createAsyncThunk(
     'moviesSlice/getAll',
-    async (_, {dispatch,rejectWithValue}) => {
-       try{ const {data: {page, results,total_pages, total_results}} = await moviesService.getAll();
-        dispatch(setMovies({movies:results}))
+    async ({page}, {dispatch,rejectWithValue}) => {
+       try{
+           const {results} = await moviesService.getAll(page);
+        dispatch(setMovies({movies:results}));
        } catch (e) {
            return rejectWithValue(e.message)
        }
     }
 )
 
+/*export const getMovieGenres = createAsyncThunk(
+    'moviesSlice/getMovieGenres',
+    async (_, {dispatch,rejectWithValue}) => {
+        try{
+            const {genres} = await genresService.getAll();
+            dispatch(setGenres({genres}))
+        } catch (e) {
+            return rejectWithValue(e.message)
+        }
+    }
+)*/
+
 const initialState = {
-    page: null,
-    totalPages: null,
-    totalResults: null,
     movies: [],
-    singleMovie: {},
     genres: [],
     status: null,
     error: null

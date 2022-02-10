@@ -1,14 +1,15 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {genresService} from "../../services";
+import {setMovies} from "./movies.slice";
 
 
 
 export const getAllGenres = createAsyncThunk(
     'genresSlice/getAllGenres',
-    async (_, {rejectWithValue}) => {
+    async (_, {rejectWithValue,dispatch}) => {
         try {
-            const genres = await genresService.getAll();
-            return genres;
+            const {genres} = await genresService.getAll();
+            dispatch(setGenres({genres}))
         } catch (e) {
             return rejectWithValue(e.message);
         }
@@ -25,16 +26,13 @@ const initialState = {
 const genresSlice = createSlice({
     name: 'genresSlice',
     initialState,
+    reducers:{
+        setGenres: (state, action) => {
+            state.genres = action.payload.genres
+        }
+    },
     extraReducers: {
 
-        [getAllGenres.pending]: (state) => {
-            state.status = 'pending';
-            state.error = null;
-        },
-        [getAllGenres.fulfilled]: (state, action) => {
-            state.status = 'fulfilled';
-            state.users = action.payload;
-        },
         [getAllGenres.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
@@ -45,7 +43,7 @@ const genresSlice = createSlice({
 
 const genresReducer = genresSlice.reducer;
 
-export const {} = genresSlice.actions;
+export const {setGenres} = genresSlice.actions;
 
 export default genresReducer;
 

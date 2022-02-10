@@ -10,12 +10,12 @@
     overflow-y: auto;
 }
 .header{
-    min-height: 50px;
+    min-height: 30px;
     background-color: darkslateblue;
     padding: 2%;
 }
 .footer{
-    min-height: 50px;
+    min-height: 30px;
     background-color: darkslateblue;
     padding: 2%;
 }

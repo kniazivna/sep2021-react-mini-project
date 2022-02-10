@@ -11,8 +11,7 @@ const MoviesListCard = ({movieItem}) => {
                <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={`${original_title} poster`}/>
            </div>
            <div>
-               <h2>{title}</h2>
-               <h5>{original_title}</h5>
+               <h3>{title}</h3>
                <p>{genre_ids}</p>
                <p>{overview}</p>
                <p>Release date: {release_date}</p>
