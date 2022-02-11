@@ -1,26 +1,18 @@
-import React, {useEffect} from 'react';
-import StarRatings from './react-star-ratings';
-import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {getMovieDetailsById} from "../../store";
+import ReactStars from "react-rating-stars-component";
+import React from "react";
+import { render } from "react-dom";
 
-const StarsRating = () => {
-    const {id} = useParams();
-    const {movie} = useSelector(state => state['moviesReducer']);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        const movie_id = id;
-        dispatch(getMovieDetailsById({movie_id}));
-
-    }, [id]);
-
-
-    return (
-        <div>
-
-        </div>
-    );
+const ratingChanged = (newRating) => {
+    console.log(newRating);
 };
 
-export {StarsRating};
+render(
+    <ReactStars
+        count={5}
+        onChange={ratingChanged}
+        size={24}
+        activeColor="#ffd700"
+    />,
+
+    document.getElementById("starRating")
+);

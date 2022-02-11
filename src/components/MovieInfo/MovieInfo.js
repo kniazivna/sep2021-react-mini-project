@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import css from './MovieInfo.module.css';
 import {getMovieDetailsById} from "../../store";
 
+
+
 const MovieInfo = () => {
 
     const {id} = useParams();
@@ -59,7 +61,6 @@ const MovieInfo = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
