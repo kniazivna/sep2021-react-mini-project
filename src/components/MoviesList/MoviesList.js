@@ -6,19 +6,15 @@ import {getAll, getAllGenres} from "../../store";
 import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
 import css from './MoviesList.module.css';
 
-
 const MoviesList = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
 
-    const {movies, pages, totalPages, error, status} = useSelector(state => state['moviesReducer']);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const {movies, error, status} = useSelector(state => state['moviesReducer']);
     const {genres} = useSelector(state => state['genresReducer']);
     const dispatchMovies = useDispatch();
     const dispatchGenres = useDispatch();
-    console.log(movies);
-    console.log(totalPages);
-    console.log(pages);
-    console.log(genres);
 
+    console.log(genres);
 
     useEffect(() => {
         if (!searchParams.get('page')) {
@@ -27,20 +23,15 @@ const MoviesList = () => {
         const page = searchParams.get('page');
         dispatchMovies(getAll({page}));
         dispatchGenres(getAllGenres())
-    }, [searchParams])
 
+    }, [searchParams])
 
     return (
         <div>
+            renders MoviesListCards
+            реализовать страницу со списком фильмов, сделать свитчер темной/светлой темы стиля, сделать запросы на
+            сервер
             <div className={css.movieListWrapper}>
-                renders MoviesListCards
-
-                2) вторая (следующая) страница с расширеным описанием фильма (подразумевается роутинг).
-                она должна открываться если пользователь кликнул на карточку с фильмом
-
-                реализовать страницу со списком фильмов, сделать свитчер темной/светлой темы стиля, сделать запросы на
-                сервер
-
                 {status === 'rejected' && <h1>Rejected</h1>}
                 {error && <h1>{error}</h1>}
                 {movies && movies.map(movieItem => <MoviesListCard key={movieItem.id} movieItem={movieItem}/>)}

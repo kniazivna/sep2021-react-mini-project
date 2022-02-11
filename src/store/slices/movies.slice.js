@@ -6,21 +6,34 @@ export const getAll = createAsyncThunk(
     'moviesSlice/getAll',
     async ({page}, {dispatch,rejectWithValue}) => {
        try{
-           const {results, total_pages} = await moviesService.getAll(page);
+           const {results} = await moviesService.getAll(page);
         dispatch(setMovies({movies:results}));
         dispatch(setPages());
-       /* dispatch(setTotalPages({totalPages:total_pages}));*/
        } catch (e) {
            return rejectWithValue(e.message)
        }
     }
 );
+
 export const getMovieDetailsById = createAsyncThunk(
     'moviesSlice/getMovieDetailsById',
     async ({movie_id}, {dispatch,rejectWithValue}) => {
         try{
            const movie = await moviesService.getMovieDetailsById(movie_id);
             dispatch(setMovie({movie}));
+        } catch (e) {
+            return rejectWithValue(e.message)
+        }
+    }
+);
+
+export const getMovieRecommendationsById = createAsyncThunk(
+    'moviesSlice/getMovieRecommendationsById',
+    async ({movie_id,page}, {dispatch,rejectWithValue}) => {
+        try{
+            const {data} = await moviesService.getMovieRecommendationsById(movie_id,page);
+            dispatch(setMovies({movies:data}));
+            dispatch(setPagesForRec());
         } catch (e) {
             return rejectWithValue(e.message)
         }
@@ -43,8 +56,7 @@ const initialState = {
     movies: [],
     totalPages: 500,//тут я взяла цю цифру, бо це максимум сторінок, які віддає API, я пробувала взяти к-ть сторінок через
                     //setTotalPages, але все одно після 500 сторінки падає 422 помилка, розумію, що більше 500 сторінок
-                    // витягнути не можливо, setTotalPages закоментувала, а не видалила спеціально, щоб отримати фідбек,
-                    // якщо щось не так робила, в документації теж так вказано: 'page must be less than or equal to 500'
+                    // витягнути не можливо, в документації теж так вказано: 'page must be less than or equal to 500'
     pages: [],
     movie: null,
     genres: [],
@@ -59,9 +71,6 @@ const moviesSlice = createSlice({
         setMovies: (state, action) => {
             state.movies = action.payload.movies
         },
-      /*  setTotalPages: (state, action) => {
-            state.totalPages = action.payload.totalPages
-        },*/
         setPages: (state) => {
             for (let i = 1; i <= state.totalPages; i++) {
                 state.pages.push(i)
@@ -69,9 +78,12 @@ const moviesSlice = createSlice({
         },
         setMovie: (state, action) => {
             state.movie = action.payload.movie
-
-        }
-
+        },
+        setPagesForRec: (state, action) => {
+            for (let i = 1; i <= action.payload.length; i++) {
+                state.pages.push(i)
+            }
+        },
     },
     extraReducers:{
         [getAll.rejected]: (state, action) => {
@@ -79,6 +91,9 @@ const moviesSlice = createSlice({
             state.error = action.payload;
         },
         [getMovieDetailsById.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },   [getMovieRecommendationsById.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         }
@@ -89,7 +104,7 @@ const moviesSlice = createSlice({
 const moviesReducer = moviesSlice.reducer;
 export default moviesReducer;
 
-export const {setMovies, setPages/*, setTotalPages*/, setMovie} = moviesSlice.actions;
+export const {setMovies, setPages, setMovie, setPagesForRec} = moviesSlice.actions;
 
 
 

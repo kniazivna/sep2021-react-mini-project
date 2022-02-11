@@ -18,7 +18,6 @@ const MoviesListCard = ({movieItem}) => {
                     <h3>{title}</h3>
                     <p>{genre_ids}</p>
                     <p>Release date: {release_date}</p>
-                    <div>Rating: {vote_average} --- (total votes: {vote_count})</div>
                 </div>
             </div>
         </Link>

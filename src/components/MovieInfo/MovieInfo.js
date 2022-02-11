@@ -61,6 +61,11 @@ const MovieInfo = () => {
                     </div>
                 </div>
             </div>
+
+            <div className={css.aboutMovieWrapper}>
+                <div className={css.aboutMovieTitle}>Rating: {movie.vote_average}</div>
+                <div className={css.aboutMovieText}>Total votes: {movie.vote_count}</div>
+            </div>
         </div>
     );
 };

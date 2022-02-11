@@ -8,13 +8,12 @@ import {getMovieDetailsById} from "../../store";
 const PosterPreview = () => {
 
     const {id} = useParams();
-    console.log(id);
-
     const {movie} = useSelector(state => state['moviesReducer']);
     const dispatch = useDispatch();
+
     useEffect(() => {
         const movie_id = id;
-        dispatch(getMovieDetailsById({movie_id}));
+        dispatch(getMovieDetailsById({movie_id}))
 
     }, [id]);
     return (
