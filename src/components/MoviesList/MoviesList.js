@@ -10,9 +10,10 @@ import css from './MoviesList.module.css';
 const MoviesList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const {movies, pages, error, status} = useSelector(state => state['moviesReducer']);
+    const {movies, pages, totalPages, error, status} = useSelector(state => state['moviesReducer']);
     const dispatchMovies = useDispatch();
     console.log(movies);
+    console.log(totalPages);
     console.log(pages);
 
 
@@ -22,7 +23,7 @@ const MoviesList = () => {
         }
         const page = searchParams.get('page');
         dispatchMovies(getAll({page}));
-        dispatchMovies(setPages());
+        dispatchMovies(setPages);
     }, [searchParams])
 
 

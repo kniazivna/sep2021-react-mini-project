@@ -6,9 +6,10 @@ export const getAll = createAsyncThunk(
     'moviesSlice/getAll',
     async ({page}, {dispatch,rejectWithValue}) => {
        try{
-           const {results} = await moviesService.getAll(page);
+           const {results, total_pages} = await moviesService.getAll(page);
         dispatch(setMovies({movies:results}));
         dispatch(setPages());
+       /* dispatch(setTotalPages({totalPages:total_pages}));*/
        } catch (e) {
            return rejectWithValue(e.message)
        }
@@ -29,7 +30,9 @@ export const getAll = createAsyncThunk(
 
 const initialState = {
     movies: [],
-    totalPages: 500,
+    totalPages: 500,//тут я взяла цю цифру, бо це максимум сторінок, які віддає API, я пробувала взяти к-ть сторінок через
+                    //setTotalPages, але все одно після 500 сторінки падає 422 помилка, розумію, що більше 500 сторінок
+                    // витягнути не можливо, setTotalPages закоментувала, а не видалила спеціально, щоб отримати фідбек,якщо щось не так робила
     pages: [],
     genres: [],
     status: null,
@@ -43,6 +46,9 @@ const moviesSlice = createSlice({
         setMovies: (state, action) => {
             state.movies = action.payload.movies
         },
+      /*  setTotalPages: (state, action) => {
+            state.totalPages = action.payload.totalPages
+        },*/
         setPages: (state) => {
             for (let i = 1; i <= state.totalPages; i++) {
                 state.pages.push(i)
@@ -61,7 +67,7 @@ const moviesSlice = createSlice({
 const moviesReducer = moviesSlice.reducer;
 export default moviesReducer;
 
-export const {setMovies, setPages} = moviesSlice.actions;
+export const {setMovies, setPages/*, setTotalPages*/} = moviesSlice.actions;
 
 
 
