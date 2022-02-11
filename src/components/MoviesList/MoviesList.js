@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useSearchParams} from "react-router-dom";
 
-import {getAll, setPages} from "../../store";
+import {getAll, getAllGenres} from "../../store";
 import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
 import css from './MoviesList.module.css';
 
@@ -11,10 +11,13 @@ const MoviesList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const {movies, pages, totalPages, error, status} = useSelector(state => state['moviesReducer']);
+    const {genres} = useSelector(state => state['genresReducer']);
     const dispatchMovies = useDispatch();
+    const dispatchGenres = useDispatch();
     console.log(movies);
     console.log(totalPages);
     console.log(pages);
+    console.log(genres);
 
 
     useEffect(() => {
@@ -23,7 +26,7 @@ const MoviesList = () => {
         }
         const page = searchParams.get('page');
         dispatchMovies(getAll({page}));
-        dispatchMovies(setPages);
+        dispatchGenres(getAllGenres())
     }, [searchParams])
 
 
@@ -32,7 +35,6 @@ const MoviesList = () => {
             <div className={css.movieListWrapper}>
                 renders MoviesListCards
 
-                1)пагинация
                 2) вторая (следующая) страница с расширеным описанием фильма (подразумевается роутинг).
                 она должна открываться если пользователь кликнул на карточку с фильмом
 

@@ -14,6 +14,17 @@ export const getAll = createAsyncThunk(
            return rejectWithValue(e.message)
        }
     }
+);
+export const getMovieDetailsById = createAsyncThunk(
+    'moviesSlice/getMovieDetailsById',
+    async ({movie_id}, {dispatch,rejectWithValue}) => {
+        try{
+           const movie = await moviesService.getMovieDetailsById(movie_id);
+            dispatch(setMovie({movie}));
+        } catch (e) {
+            return rejectWithValue(e.message)
+        }
+    }
 )
 
 /*export const getMovieGenres = createAsyncThunk(
@@ -35,6 +46,7 @@ const initialState = {
                     // витягнути не можливо, setTotalPages закоментувала, а не видалила спеціально, щоб отримати фідбек,
                     // якщо щось не так робила, в документації теж так вказано: 'page must be less than or equal to 500'
     pages: [],
+    movie: null,
     genres: [],
     status: null,
     error: null
@@ -54,10 +66,19 @@ const moviesSlice = createSlice({
             for (let i = 1; i <= state.totalPages; i++) {
                 state.pages.push(i)
             }
+        },
+        setMovie: (state, action) => {
+            state.movie = action.payload.movie
+
         }
+
     },
     extraReducers:{
         [getAll.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getMovieDetailsById.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         }
@@ -68,7 +89,7 @@ const moviesSlice = createSlice({
 const moviesReducer = moviesSlice.reducer;
 export default moviesReducer;
 
-export const {setMovies, setPages/*, setTotalPages*/} = moviesSlice.actions;
+export const {setMovies, setPages/*, setTotalPages*/, setMovie} = moviesSlice.actions;
 
 
 

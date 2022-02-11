@@ -1,0 +1,25 @@
+.movieInfoWrapper{
+    flex: 1;
+}
+.aboutMovieWrapper {
+    display: flex;
+    margin-top: 10px;
+}
+
+.aboutMovieTitle {
+    width: 30%;
+    font-weight: 700;
+    color: mediumpurple;
+}
+
+.aboutMovieText {
+    width: 70%;
+    font-size: 15px;
+    color: mediumpurple;
+
+}
+.itemFlex{
+    width: 70%;
+    display: flex;
+    gap: 15px;
+}
