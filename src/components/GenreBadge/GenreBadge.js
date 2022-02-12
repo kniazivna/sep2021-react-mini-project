@@ -1,10 +1,12 @@
 import React from 'react';
 
-const GenreBadge = () => {
-    return (
-        <div>
+import css from './GenreBadge.module.css'
 
-        </div>
+const GenreBadge = ({movieWithGenre}) => {
+    return (
+        <>
+            <div className={css.genreBadge}>{movieWithGenre}</div>
+        </>
     );
 };
 
