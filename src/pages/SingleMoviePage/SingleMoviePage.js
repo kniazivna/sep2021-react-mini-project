@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import css from './SingleMoviePage.module.css';
@@ -37,7 +37,6 @@ const SingleMoviePage = () => {
                     {movie.overview}
                 </div>
             </div>}
-            РЕКОМЕНДАЦІЇ, ЯКЩО ВСТИГНУ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         </div>
 
     );

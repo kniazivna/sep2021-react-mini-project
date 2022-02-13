@@ -31,7 +31,7 @@ const MoviesListCard = ({movieItem}) => {
     return (
         <div className={css.movieCard}>
             <Link className={css.link} to={`${id}`.toString()}>
-                <div>
+                <div className={css.movieCardContainer}>
                     <div className={css.poster}>
                         <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} alt={`${original_title} poster`}/>
                         <p>{overview}</p>
@@ -42,7 +42,7 @@ const MoviesListCard = ({movieItem}) => {
                         {moviesWithGenre && moviesWithGenre.map(movieWithGenre =>
                             <GenreBadge key={movieWithGenre} movieWithGenre={movieWithGenre}/>)}
                         </div>
-                        <div >Release date: {release_date}</div>
+                        <div className={css.infoData}>Release date: {release_date}</div>
                     </div>
                 </div>
             </Link>
