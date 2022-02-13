@@ -23,8 +23,6 @@ const MoviesList = () => {
 
     return (
         <div>
-            сделать свитчер темной/светлой темы стиля!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            сервер
             <div className={css.movieListWrapper}>
                 {status === 'rejected' && <h1>Rejected</h1>}
                 {error && <h1>{error}</h1>}
