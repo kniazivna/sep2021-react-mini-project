@@ -10,7 +10,7 @@ const Header = ({themeSwitch}) => {
     return (
         <div className={css.headerWrapper}>
             <ThemeSwitcher themeSwitch={themeSwitch}/>
-            <Link to={'/'}><h1>Movies</h1></Link>
+            <Link to={'/'}><div className={css.headerText}>Movies</div></Link>
             <UserInfo/>
         </div>
     );
