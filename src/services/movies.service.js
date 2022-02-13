@@ -8,7 +8,4 @@ export const moviesService = {
 
     getMovieDetailsById: (movie_id) =>axiosService.get(`${urls.movieDetails}/${movie_id}`)
         .then(value => value.data),
-
-    // getMovieRecommendationsById:  (movie_id) =>axiosService.get(`${urls.movieDetails}/${movie_id}/recommendations`)
-    //     .then(value => value.data)
 }
