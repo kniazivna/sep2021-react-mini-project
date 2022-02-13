@@ -6,8 +6,9 @@ import {Layout} from "./components";
 import {MoviesPage, SingleMoviePage} from "./pages";
 
 function App() {
+
     return (
-        <Routes>
+        <Routes >
 
             <Route path={'/'} element={<Layout/>}>
                 <Route index element={<Navigate to={'movies'}/>}/>

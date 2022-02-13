@@ -1,11 +1,11 @@
 .btn{
     background: transparent;
-    color: mediumpurple;
+    color: var(--text);
     border: none;
     font-size: 15px;
 }
 .btn:hover{
-   border: 1px solid mediumpurple;
+   border: 1px solid var(--text);
     border-radius: 7%;
 }
 
@@ -17,7 +17,7 @@ margin: 20px;
     margin: 50px 0 20px 0;
     font-weight: bold;
     font-size: 30px;
-    color: mediumpurple;
+    color: var(--text);
 }
 .infoBlock{
     display: flex;
@@ -27,7 +27,7 @@ margin: 20px;
     text-align: justify;
     margin: 20px 0;
     line-height: 24px;
-    color: mediumpurple;
+    color: var(--text);
 }
 .movieOverview div{
     font-weight: bold;

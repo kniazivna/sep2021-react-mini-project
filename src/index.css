@@ -1,0 +1,10 @@
+:root {
+    --background-header-footer: darkslateblue;
+    --text: mediumpurple;
+    --background-main: rgba(72, 61, 139, 0.2);
+
+}
+[data-theme='dark'] {
+    --background-header-footer: #24052d;
+    --background-main: #16031c;
+}

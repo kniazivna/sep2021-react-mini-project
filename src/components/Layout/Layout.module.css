@@ -2,23 +2,18 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: all .5s;
 }
 .main{
     flex: 1;
-    background-color: rgba(72, 61, 139, 0.2);
-    /*background-color: #16031c;*/
+    background-color: var(--background-main);
     padding: 1%;
     overflow-y: auto;
 }
-.header{
+.header, .footer{
     min-height: 30px;
-    /*background-color: #24052d;*/
-    background-color: darkslateblue;
+    background-color: var(--background-header-footer);
     padding: 2%;
 }
-.footer{
-    min-height: 30px;
-    /*background-color: #24052d;*/
-    background-color: darkslateblue;
-    padding: 2%;
-}
+
+

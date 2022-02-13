@@ -1,0 +1,28 @@
+.userInfoWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 0 15px;
+    gap: 10px;
+
+}
+
+.userInfoImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userInfoImg img{
+    width: 30px;
+
+}
+
+.userInfoName{
+color: mediumpurple;
+    font-weight: bold;
+}

@@ -1,10 +1,16 @@
 import React from 'react';
 
-const Header = () => {
+import css from './Header.module.css';
+import {UserInfo} from "../UserInfo/UserInfo";
+import {ThemeSwitcher} from "../ThemeSwitcher/ThemeSwitcher";
+
+const Header = ({themeSwitch}) => {
+
     return (
-        <>
-            Header
-        </>
+        <div className={css.headerWrapper}>
+            <ThemeSwitcher themeSwitch={themeSwitch}/>
+            <UserInfo/>
+        </div>
     );
 };
 

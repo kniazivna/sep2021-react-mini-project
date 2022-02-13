@@ -9,13 +9,16 @@
 .aboutMovieTitle {
     width: 30%;
     font-weight: 700;
-    color: mediumpurple;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .aboutMovieText {
     width: 70%;
     font-size: 15px;
-    color: mediumpurple;
+    color: var(--text);
 
 }
 .itemFlex{

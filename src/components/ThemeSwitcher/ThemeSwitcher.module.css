@@ -1,0 +1,7 @@
+.switchButton {
+    color: var(--text);
+    background-color: var(--background-header-footer);
+    border: 2px var(--text) solid;
+    float: right;
+    transition: all .5s;
+}
