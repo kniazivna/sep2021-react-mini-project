@@ -8,7 +8,7 @@ import {getMovieDetailsById} from "../../store";
 const MovieInfo = () => {
 
     const {id} = useParams();
-    const {movie} = useSelector(state => state['moviesReducer']);
+    const {movie, status, error} = useSelector(state => state['moviesReducer']);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -53,8 +53,9 @@ const MovieInfo = () => {
             <div className={css.aboutMovieWrapper}>
                 <div className={css.aboutMovieTitle}>Languages:</div>
                 <div className={css.aboutMovieText}>
-                    <div
-                        className={css.itemFlex}>{movie.spoken_languages && movie.spoken_languages.map(language =>
+                    {status === 'rejected' && <h1>Rejected</h1>}
+                    {error && <h2>{error}</h2>}
+                    <div className={css.itemFlex}>{movie.spoken_languages && movie.spoken_languages.map(language =>
                         <div key={language.english_name}>{language.english_name}</div>)}
                     </div>
                 </div>

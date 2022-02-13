@@ -8,7 +8,7 @@ import {GenreBadge} from "../GenreBadge/GenreBadge";
 
 const MoviesListCard = ({movieItem}) => {
 
-    const {genre_ids, id, original_title, overview, poster_path, release_date, title} = movieItem;
+    const {genre_ids, id, original_title, overview, poster_path, release_date, title, status, error} = movieItem;
     const {genres} = useSelector(state => state['moviesReducer']);
     const dispatch = useDispatch();
 
@@ -27,7 +27,6 @@ const MoviesListCard = ({movieItem}) => {
         }
     )
 
-
     return (
         <div className={css.movieCard}>
             <Link className={css.link} to={`${id}`.toString()}>
@@ -39,6 +38,8 @@ const MoviesListCard = ({movieItem}) => {
                     <div className={css.info}>
                         <div className={css.infoTitle}>{title}</div>
                         <div className={css.genreBadgeWrapper}>
+                            {status === 'rejected' && <h1>Rejected</h1>}
+                            {error && <h2>{error}</h2>}
                         {moviesWithGenre && moviesWithGenre.map(movieWithGenre =>
                             <GenreBadge key={movieWithGenre} movieWithGenre={movieWithGenre}/>)}
                         </div>

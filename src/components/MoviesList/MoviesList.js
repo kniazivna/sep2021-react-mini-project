@@ -25,7 +25,7 @@ const MoviesList = () => {
         <div>
             <div className={css.movieListWrapper}>
                 {status === 'rejected' && <h1>Rejected</h1>}
-                {error && <h1>{error}</h1>}
+                {error && <h2>{error}</h2>}
                 {movies && movies.map(movieItem => <MoviesListCard key={movieItem.id} movieItem={movieItem}/>)}
             </div>
             <div className={css.buttonsWrapper}>

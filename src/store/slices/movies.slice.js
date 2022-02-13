@@ -69,7 +69,7 @@ const moviesSlice = createSlice({
         }
     },
     extraReducers: {
-        [getAll.rejected]: (state, action) => {
+        [getAll.rejected]: (state,action) => {
             state.status = 'rejected';
             state.error = action.payload;
         },
@@ -83,7 +83,6 @@ const moviesSlice = createSlice({
         }
     }
 })
-
 
 const moviesReducer = moviesSlice.reducer;
 export default moviesReducer;
